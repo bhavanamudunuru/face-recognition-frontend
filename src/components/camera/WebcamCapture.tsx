@@ -8,8 +8,8 @@ import { RefObject } from 'react'
 import { Camera } from 'lucide-react'
 
 interface Props {
-  videoRef: RefObject<HTMLVideoElement>
-  canvasRef: RefObject<HTMLCanvasElement>
+  videoRef: RefObject<HTMLVideoElement | null>
+  canvasRef: RefObject<HTMLCanvasElement | null>
   cameraActive: boolean
 }
 
