@@ -20,10 +20,10 @@ async function post(endpoint: string, body: object): Promise<FaceResult> {
   return res.json()
 }
 
-export async function registerFace(userId: string, imageUrl: string): Promise<FaceResult> {
-  return post('/api/register', { user_id: userId, image_url: imageUrl })
+export async function registerFace(userId: string, imageBase64: string): Promise<FaceResult> {
+  return post('/api/register', { user_id: userId, image_base64: imageBase64 })
 }
 
-export async function verifyFace(userId: string, imageUrl: string): Promise<FaceResult> {
-  return post('/api/verify', { user_id: userId, image_url: imageUrl })
+export async function verifyFace(userId: string, imageBase64: string): Promise<FaceResult> {
+  return post('/api/verify', { user_id: userId, image_base64: imageBase64 })
 }
