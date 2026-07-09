@@ -13,7 +13,6 @@ import CapturedPreview from './components/camera/CapturedPreview'
 import CameraControls from './components/camera/CameraControls'
 import ResultCard from './components/results/ResultCard'
 import { useCamera } from './hooks/useCamera'
-import { uploadFaceImage } from './services/uploadService'
 import { registerFace, verifyFace } from './services/apiService'
 import { ScanStatus, FaceResult } from './types'
 
@@ -66,15 +65,11 @@ export default function App() {
     setError(null)
 
     try {
-      // Step 1 — Upload to Firebase Storage
-      setScanStatus('uploading')
-      const imageUrl = await uploadFaceImage(USER_ID, capturedImage)
-
-      // Step 2 — Send to backend for AI processing
+      // Send captured image directly to backend for AI processing
       setScanStatus('scanning')
       const scanResult = appMode === 'register'
-        ? await registerFace(USER_ID, imageUrl)
-        : await verifyFace(USER_ID, imageUrl)
+        ? await registerFace(USER_ID, capturedImage)
+        : await verifyFace(USER_ID, capturedImage)
 
       setResult(scanResult)
       setScanStatus('done')
